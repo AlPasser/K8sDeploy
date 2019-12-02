@@ -29,6 +29,7 @@
 ## 其它节点
 ```
     sudo swapoff -a
+    sudo sed -i 's/.*swap.*/#&/' /etc/fstab
 ```
 ### 1. 已知
 ```
