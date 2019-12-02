@@ -27,6 +27,9 @@
 ```
 
 ## 其它节点
+```
+    sudo swapoff -a
+```
 ### 1. 已知
 ```
     sudo kubeadm join 192.168.1.3:6443 --token ifn8u4.4wno652ls3cclhii --discovery-token-ca-cert-hash sha256:08b2358b349e96871a4372e6d14d714dadc34f372b8a9ca79dd328689233ad71
