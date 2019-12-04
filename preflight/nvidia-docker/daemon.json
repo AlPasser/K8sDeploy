@@ -1,0 +1,28 @@
+{
+    "exec-opts": ["native.cgroupdriver=systemd"],
+    "registry-mirrors": [
+        "https://docker.mirrors.ustc.edu.cn/",
+        "https://dockerhub.azk8s.cn",
+        "https://gcr.azk8s.cn"
+    ],
+    "insecure-registries": [
+        "harbor.oceanai.com.cn",
+        "192.168.1.5:5005"
+    ],
+    "debug": true,
+    "experimental": false,
+    "max-concurrent-downloads": 10,
+    "log-driver": "json-file",
+    "log-level": "warn",
+    "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+    },
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+    "default-runtime": "nvidia"
+}
