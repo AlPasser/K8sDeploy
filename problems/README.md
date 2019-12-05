@@ -1,6 +1,14 @@
 # 问题与解决方案
 
 ## 1. [Kubernetes Pod 内容器无法访问外网问题](https://www.xbzdr.com/590.html)
+```
+    # 开启 IPV4 内核转发
+    ip_forward=`cat /proc/sys/net/ipv4/ip_forward`
+    if [[ 0 = $ip_forward ]]; then
+        sudo echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
+        sudo sysctl -p
+    fi
+```
 
 ## 2. kubeadm join 超时
 kubelet 版本：v1.15.5
