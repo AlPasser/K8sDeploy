@@ -10,7 +10,7 @@
 ```
     sudo swapoff -a
     sudo sed -i 's/.*swap.*/#&/' /etc/fstab
-    sudo kubeadm init --image-repository truthbean --kubernetes-version=v1.15.5 --pod-network-cidr=10.244.0.1/16 > init.log
+    sudo kubeadm init --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.15.5 --pod-network-cidr=10.244.0.1/16 > init.log
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown -R $(id -u):$(id -g) $HOME/.kube/config
