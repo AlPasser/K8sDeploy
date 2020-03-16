@@ -41,7 +41,11 @@
 ## 网络
 ### flannel
 ```
+    # 旧版
     kubectl -n kube-system apply -f ./network/kube-flannel.yml
+    
+    # 新版（镜像拉取需翻墙）
+    kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 ### canal
 ```
