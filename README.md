@@ -17,6 +17,11 @@
     sudo systemctl enable kubelet && sudo systemctl start kubelet
 ```
 
+## 关闭防火墙
+```
+    sudo ufw disable
+```
+
 ## 初始化
 ```
     sudo kubeadm reset
