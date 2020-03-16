@@ -1,5 +1,22 @@
 # K8s 部署
 
+## 安装 kubeadm
+```
+    # 安装系统工具
+    sudo apt-get update && sudo apt-get install -y apt-transport-https
+    # 安装 GPG 证书
+    curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+    # 写入软件源；注意：我们用系统代号为 bionic，但目前阿里云不支持，所以沿用 16.04 的 xenial
+    cat << EOF >/etc/apt/sources.list.d/kubernetes.list
+    > deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+    > EOF
+    # 安装
+    apt-get update  
+    apt-get install -y kubelet kubeadm kubectl
+    # 设置 kubelet 自启动，并启动 kubelet
+    systemctl enable kubelet && systemctl start kubelet
+```
+
 ## 初始化
 ```
     sudo kubeadm reset
