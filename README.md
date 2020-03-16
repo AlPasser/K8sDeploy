@@ -11,10 +11,10 @@
     > deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
     > EOF
     # 安装
-    apt-get update  
-    apt-get install -y kubelet kubeadm kubectl
+    sudo apt-get update  
+    sudo apt-get install -y kubelet kubeadm kubectl
     # 设置 kubelet 自启动，并启动 kubelet
-    systemctl enable kubelet && systemctl start kubelet
+    sudo systemctl enable kubelet && sudo systemctl start kubelet
 ```
 
 ## 初始化
