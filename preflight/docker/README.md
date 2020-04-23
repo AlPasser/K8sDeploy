@@ -11,4 +11,7 @@
     sudo apt-mark hold docker-ce docker-ce-cli
     sudo groupadd docker
     sudo usermod -aG docker $USER
+    
+    # 修改 cgroupdriver 为 systemd
+    # 参考链接：https://blog.csdn.net/shida_csdn/article/details/104054041
 ```
