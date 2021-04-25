@@ -75,3 +75,14 @@
     openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
 ```
 
+## 主节点有网关代理情况
+### 主节点初始化
+apiserver-cert-extra-sans 设置为网关IP
+```
+    sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.19.0 --pod-network-cidr=10.244.0.1/16 --apiserver-cert-extra-sans=211.67.19.251 > init.log
+```
+### 主节点上修改 cluster-info ConfigMap
+```
+    kubectl edit cm cluster-info -oyaml -n kube-public
+```
+将 data.kubeconfig.clusters.cluster.server 改成 https://网关socket
