@@ -30,3 +30,20 @@ Failed to create SubnetManager: error retrieving pod spec for 'kube-system/kube-
 ```
   sudo bash -c "iptables -P OUTPUT ACCEPT && iptables -P FORWARD ACCEPT && iptables -F && iptables -L -n"
 ```
+
+## 3. Failed to create pod sandbox
+错误日志：
+```
+  Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "572d5fd6d13d2dd6ac68c056ae69b2b3a78bcf7c36fb8e4435a7518150ebef02" network for pod "coldmountain-f465d6868-8bpt4": networkPlugin cni failed to set up pod "coldmountain-f465d6868-8bpt4_coldworld" network: failed to set bridge addr: "cni0" already has an IP address different from 10.244.2.1/24
+```
+在 Pod 部署节点上执行：
+```
+  ifconfig cni0 down 
+  ip link delete cni0
+```
+
+## 4. 网络插件残留问题
+
+```
+  sudo rm /etc/cni/net.d/相关文件
+```
