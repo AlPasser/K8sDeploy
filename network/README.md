@@ -47,3 +47,24 @@ Failed to create SubnetManager: error retrieving pod spec for 'kube-system/kube-
 ```
   sudo rm /etc/cni/net.d/相关文件
 ```
+
+## 5. 网关代理导致不同 Node 上的 Pod 间无法通信
+
+[参考链接](https://cloud.tencent.com/developer/article/1819134)
+
+问题定位命令：
+```
+  sudo tcpdump -i eno1 port 8472  # UDP 协议
+  kubectl describe node cloud04  # cloud04 为被代理的节点，实际场景中为主节点
+```
+
+解决方案：
+```
+主节点上执行：
+  kubectl annotate node cloud04 flannel.alpha.coreos.com/public-ip-overwrite=211.67.19.251 --overwrite
+  kubectl -n kube-system get pods --field-selector spec.nodeName=cloud04 | grep flannel
+  kubectl -n kube-system get pod kube-flannel-ds-cpwc8 -o yaml | kubectl replace --force -f -
+网关节点上执行（211.67.19.251 为网关 IP）：
+  iptables -t nat -A PREROUTING -d 211.67.19.251 -p udp --dport 8472 -j DNAT --to-destination 192.168.1.4:8472
+  iptables -t nat -A POSTROUTING -d 192.168.1.4 -p udp --dport 8472 -j SNAT --to 192.168.1.1
+```
