@@ -86,3 +86,8 @@ apiserver-cert-extra-sans 设置为网关IP
     kubectl edit cm cluster-info -oyaml -n kube-public
 ```
 将 data.kubeconfig.clusters.cluster.server 改成 https://网关socket
+### 主节点上修改 kube-proxy ConfigMap
+```
+    kubectl edit cm -n kube-system kube-proxy
+```
+將 data.kubeconfig.conf.clusters.cluster.server 改成 https://网关socket
