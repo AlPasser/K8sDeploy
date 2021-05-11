@@ -32,7 +32,7 @@
 ```
     sudo swapoff -a
     sudo sed -i 's/.*swap.*/#&/' /etc/fstab
-    sudo kubeadm init --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.15.5 --pod-network-cidr=10.244.0.1/16 > init.log
+    sudo kubeadm init --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.15.5 --pod-network-cidr=10.244.0.0/16 > init.log
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown -R $(id -u):$(id -g) $HOME/.kube/config
@@ -79,7 +79,7 @@
 ### 主节点初始化
 apiserver-cert-extra-sans 设置为网关IP
 ```
-    sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.19.0 --pod-network-cidr=10.244.0.1/16 --apiserver-cert-extra-sans=211.67.19.251 > init.log
+    sudo kubeadm init --apiserver-advertise-address=0.0.0.0 --image-repository registry.aliyuncs.com/google_containers --kubernetes-version=v1.19.0 --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=211.67.19.251 > init.log
 ```
 ### 主节点上修改 cluster-info ConfigMap
 ```
