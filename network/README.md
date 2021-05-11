@@ -24,3 +24,9 @@ Failed to create SubnetManager: error retrieving pod spec for 'kube-system/kube-
       value: "46443"
 ```
 
+## 2. 不同 Node 上的 Pod 间无法通信
+
+在每个节点上执行（[参考链接](https://my.oschina.net/u/4275236/blog/3354231)）：
+```
+  sudo bash -c "iptables -P OUTPUT ACCEPT && iptables -P FORWARD ACCEPT && iptables -F && iptables -L -n"
+```
